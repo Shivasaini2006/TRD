@@ -1,0 +1,1100 @@
+/* 
+========================================================================
+   THE LITERARY NEXUS - MAIN STYLESHEET
+   Description: Premium, editorial-style styling using modern CSS3.
+   Accessibility: Compliant with WCAG 2.1 AA (contrast, keyboard focus)
+========================================================================
+*/
+
+/* ---------------------------------------------------------------------
+   1. DESIGN TOKENS
+--------------------------------------------------------------------- */
+:root {
+  /* Color Palette */
+  --brand-primary: #A30000;      /* Deep Crimson */
+  --brand-secondary: #F8F0E3;    /* Premium Cream */
+  --accent-gold: #D4AF37;        /* Elegant Gold */
+  --text-dark: #222222;          /* Rich Charcoal (darkened for contrast) */
+  --text-muted: #555555;         /* Medium Gray for body snippets */
+  --text-light: #FDFDFD;         /* Clean White */
+  --bg-card: #FFFFFF;            /* Card White */
+  --overlay-dark: rgba(18, 18, 18, 0.75); /* Dark screen overlay */
+
+  /* Typography */
+  --font-heading: 'Merriweather', Georgia, serif;
+  --font-body: 'Open Sans', Helvetica, Arial, sans-serif;
+  
+  /* Layout & Spacing */
+  --spacing-unit: 1rem;
+  --max-width: 1200px;
+  
+  /* Borders & Shadows */
+  --border-radius-sm: 4px;
+  --border-radius-lg: 8px;
+  --box-shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --box-shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 20px 35px rgba(163, 0, 0, 0.12);
+  
+  /* Animation Timing */
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: all 0.15s ease-out;
+}
+
+/* ---------------------------------------------------------------------
+   2. RESET & BASE
+--------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--brand-secondary);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  margin-top: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+  color: var(--accent-gold);
+}
+
+/* Accessible Keyboard Focus States */
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible, 
+textarea:focus-visible, 
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 4px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------
+   3. LAYOUT UTILITIES
+--------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--spacing-unit) * 1.5);
+  padding-right: calc(var(--spacing-unit) * 1.5);
+}
+
+.section-padding {
+  padding-top: calc(var(--spacing-unit) * 5);
+  padding-bottom: calc(var(--spacing-unit) * 5);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gold {
+  color: var(--accent-gold);
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  text-transform: capitalize;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--brand-primary);
+  margin: calc(var(--spacing-unit) * 0.75) auto 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: var(--brand-primary);
+  color: var(--text-light);
+  padding: 1rem 2.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  box-shadow: var(--box-shadow-subtle);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover, .btn:focus {
+  background-color: transparent;
+  color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(163, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(0) scale(1.0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 2px solid var(--text-dark);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: var(--text-dark);
+  color: var(--brand-secondary);
+  border-color: var(--text-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-subtle);
+}
+
+/* ---------------------------------------------------------------------
+   4. NAVIGATION / HEADER
+--------------------------------------------------------------------- */
+.header-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: transparent;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+.header-nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--accent-gold);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav-links a:hover, .nav-links a:focus {
+  color: var(--accent-gold);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------
+   5. HERO SECTION
+--------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(var(--overlay-dark), var(--overlay-dark)), 
+                    url('https://picsum.photos/id/1015/1600/900');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--text-light);
+  padding: calc(var(--spacing-unit) * 8) 0 calc(var(--spacing-unit) * 5);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  z-index: 2;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-cta {
+  margin-top: 1.5rem;
+}
+
+/* ---------------------------------------------------------------------
+   6. EVENT INFO & COUNTDOWN
+--------------------------------------------------------------------- */
+.countdown-section {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--box-shadow-subtle);
+  position: relative;
+  z-index: 5;
+  margin-top: -3rem; /* Lift over the hero slightly */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  border-radius: var(--border-radius-lg);
+  padding: 2.5rem;
+}
+
+.event-brief {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.event-details-text h3 {
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.event-meta-info {
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.event-meta-info span {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.countdown-wrapper {
+  text-align: center;
+}
+
+.countdown-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.countdown-unit {
+  min-width: 70px;
+}
+
+.countdown-val {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.countdown-lbl {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+/* Fallback & Concluded state styling */
+.countdown-concluded, .countdown-error {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--brand-primary);
+  font-weight: 700;
+  padding: 0.5rem;
+  border: 1px dashed var(--accent-gold);
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+}
+
+/* ---------------------------------------------------------------------
+   7. FEATURED AUTHORS SECTION
+--------------------------------------------------------------------- */
+.authors-grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+/* Desktop layout (default) */
+@media (min-width: 1200px) {
+  .authors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet layout */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .authors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .authors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.author-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--box-shadow-subtle);
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: rgba(163, 0, 0, 0.15);
+}
+
+.author-img-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 4px solid var(--brand-secondary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: var(--transition-smooth);
+}
+
+.author-card:hover .author-img-wrapper {
+  border-color: var(--accent-gold);
+}
+
+.author-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+.author-card:hover .author-img-wrapper img {
+  transform: scale(1.08);
+}
+
+.author-name {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.author-snippet {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.author-contact {
+  font-size: 0.85rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.author-card .btn-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.author-card .btn-text:hover,
+.author-card .btn-text:focus {
+  background-color: var(--brand-primary);
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------
+   8. AUTHOR PROFILE EXPANSION (MODAL SYSTEM)
+--------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-container {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  max-width: 550px;
+  width: 100%;
+  box-shadow: var(--box-shadow-medium);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 1.5rem 2rem;
+  background-color: var(--brand-secondary);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--brand-primary);
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
+  color: var(--text-dark);
+  padding: 0.25rem 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--brand-primary);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-body-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-body-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-gold);
+}
+
+.modal-body-title h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+.modal-body-title p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.modal-bio-snippet {
+  font-style: italic;
+  color: var(--text-muted);
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-full-bio-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.modal-full-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------------------
+   9. EVENT SCHEDULE SECTION
+--------------------------------------------------------------------- */
+.schedule-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 120px;
+  width: 2px;
+  background-color: rgba(212, 175, 55, 0.4);
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-time {
+  width: 100px;
+  text-align: right;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  padding-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.timeline-badge {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  border: 3px solid var(--brand-secondary);
+  position: absolute;
+  left: 114px;
+  top: 8px;
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(163, 0, 0, 0.15);
+}
+
+.timeline-content {
+  margin-left: 50px;
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-subtle);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  flex-grow: 1;
+}
+
+.timeline-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.timeline-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Responsive timeline for mobile */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 16px;
+  }
+  .timeline-badge {
+    left: 10px;
+    top: 6px;
+  }
+  .timeline-item {
+    flex-direction: column;
+    padding-left: 40px;
+  }
+  .timeline-time {
+    width: auto;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  .timeline-content {
+    margin-left: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   10. RSVP SECTION
+--------------------------------------------------------------------- */
+.rsvp-section {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+}
+
+.rsvp-section .section-title {
+  color: var(--text-light);
+}
+
+.rsvp-container {
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.04);
+  padding: 3rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(253, 253, 253, 0.1);
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+}
+
+.form-group input {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(253, 253, 253, 0.2);
+  border-radius: var(--border-radius-sm);
+  padding: 0.85rem 1rem;
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.form-group input::placeholder {
+  color: rgba(253, 253, 253, 0.4);
+}
+
+.rsvp-form button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .rsvp-container {
+    padding: 1.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   11. VENUE & LOGISTICS SECTION
+--------------------------------------------------------------------- */
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.venue-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.venue-card-wrapper {
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-subtle);
+  border-left: 4px solid var(--brand-primary);
+}
+
+.venue-card-wrapper h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: var(--brand-primary);
+}
+
+.venue-address {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-style: normal;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.parking-info h4 {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  margin-bottom: 0.50rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.parking-info h4::before {
+  content: 'P';
+  background-color: var(--accent-gold);
+  color: var(--text-dark);
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.parking-info ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.parking-info li {
+  margin-bottom: 0.5rem;
+}
+
+.map-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-medium);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.map-wrapper:hover {
+  transform: scale(1.01);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.map-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+.map-link:hover .map-placeholder {
+  filter: brightness(0.95);
+}
+
+/* ---------------------------------------------------------------------
+   12. FOOTER SECTION
+--------------------------------------------------------------------- */
+.footer-site {
+  background-color: #121212;
+  color: #A0A0A0;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid rgba(253, 253, 253, 0.05);
+  font-size: 0.9rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.footer-brand h3 {
+  color: var(--text-light);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #A0A0A0;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--accent-gold);
+}
+
+.footer-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(253, 253, 253, 0.05);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-legal-links a {
+  color: #888888;
+  font-size: 0.8rem;
+}
+
+.footer-legal-links a:hover {
+  color: var(--accent-gold);
+}
+
+/* ---------------------------------------------------------------------
+   13. EXTRA BREAKPOINTS / RESPONSIVE POLISH
+--------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: calc(var(--spacing-unit) * 3.5);
+    padding-bottom: calc(var(--spacing-unit) * 3.5);
+  }
+  .event-brief {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .countdown-section {
+    padding: 1.5rem;
+    margin-top: -2rem;
+  }
+  .countdown-grid {
+    gap: 1rem;
+  }
+  .countdown-val {
+    font-size: 1.8rem;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  .btn {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
