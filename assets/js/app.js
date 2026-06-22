@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // API Endpoints
   const ENDPOINTS = {
-    eventInfo: 'https://api.mocki.io/v2/01d0a1b0-2f3b-4c4d-9e0a-1b0c2d3e4f5a',
+    eventInfo: './assets/data/event.json',
     authorsInfo: 'https://jsonplaceholder.typicode.com/users'
   };
 
