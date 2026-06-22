@@ -422,8 +422,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Successful form submission actions
         alert('RSVP Confirmed! We look forward to seeing you.');
-        console.log('Registration details successfully logged to console:', formData);
-        console.log('Server response (httpbin):', responseData);
         
         DOM.rsvpForm.reset(); // Reset form fields
       } catch (error) {
@@ -431,7 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Graceful Client-side fallback: allow the user to succeed in mock environment
         alert('RSVP Confirmed! We look forward to seeing you.');
-        console.log('Registration details (Client Fallback):', formData);
         
         DOM.rsvpForm.reset(); // Reset form fields anyway for smooth user experience
       } finally {
