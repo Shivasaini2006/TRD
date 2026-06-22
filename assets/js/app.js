@@ -467,7 +467,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =========================================================================
-     5. INITIALIZATION CALLS
+     5. MOBILE RESPONSIVE NAVIGATION
+     ========================================================================= */
+
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !isExpanded);
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when links are clicked
+    const menuLinks = navLinks.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+
+  /* =========================================================================
+     6. INITIALIZATION CALLS
      ========================================================================= */
 
   fetchEventDetails();
